@@ -1,0 +1,164 @@
+$border-color: rgb(195, 195, 195);
+
+.container {
+    margin-top: 20px;
+
+    table {
+        width: 100%;
+        margin-top: 10px;
+
+        thead {
+            tr {
+                th {
+                    border-top: 1px solid $border-color;
+                    border-right: 1px solid $border-color;
+                    border-left: 1px solid $border-color;
+                    padding: 8px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    border: 1px solid $border-color;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}
+
+.btn-cont {
+    display: flex;
+    justify-content: right;
+
+    .addProduct {
+        border: none;
+        background-color: skyblue;
+        padding: 5px 10px;
+        border-radius: 4px;
+    }
+}
+
+.editButton {
+    border: none;
+    background-color: rgb(0, 160, 246);
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+
+    &:focus {
+        outline: 3px solid rgb(133, 212, 255);
+    }
+}
+
+.deleteButton {
+    border: none;
+    background-color: rgb(255, 25, 25);
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+
+    &:focus {
+        outline: 3px solid rgb(255, 135, 135);
+    }
+}
+
+.action-btns {
+    button {
+        &:nth-child(1) {
+            margin-right: 10px;
+        }
+    }
+}
+
+// modal content styling
+.modal-content {
+    padding: 10px;
+}
+
+.close-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subBtn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.m-body {
+    input {
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+// corousel
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+        width: 100%;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        transition: opacity 0.5s ease;
+        opacity: 0;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        z-index: 1;
+        padding: 0.5rem;
+        font-size: 1.5rem;
+
+        &.prev {
+            left: 0;
+        }
+
+        &.next {
+            right: 0;
+        }
+    }
+}
+
+.uploaded-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+  
+    .image-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+  
+      img {
+        margin-right: 10px;
+        border: 1px solid #ddd;
+      }
+  
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+  

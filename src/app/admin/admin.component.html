@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="btn-cont">
+        <button class="addProduct" (click)="addProduct()" data-bs-toggle="modal" data-bs-target="#addProduct">Add
+            Product</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of productsData">
+                <td>{{ product.sku }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td><img [src]="product.images[0]" (click)="showImages(product)" alt="Product Image" width="50" data-bs-toggle="modal"
+                        data-bs-target="#showImages"></td>
+                <td class="action-btns">
+                    <button class="editButton" (click)="editProduct(product)" data-bs-toggle="modal" data-bs-target="#addProduct">Edit</button>
+                    <button class="deleteButton" (click)="deleteProduct(product.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="addProductLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="close-btn">
+                <h4>{{product.id ? 'Edit' : 'Add'}} Products</h4>
+                <button type="button" class="btn-close" id="mcb" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="m-body">
+                <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <label for="sku">SKU</label>
+                    <input type="text" class="form-control" [(ngModel)]="product.sku" name="sku" required>
+
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="product.name" name="name" required>
+
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" [(ngModel)]="product.price" name="price" required>
+
+                    <div class="uploaded-images">
+                        <div *ngFor="let image of product.images; let i = index" class="image-item">
+                          <img [src]="image" alt="Uploaded Image" width="100">
+                          <button (click)="deleteImage(i)" class="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                      </div>
+                    <label for="images">Images</label>
+                    <input type="file" class="form-control" (change)="onImageChange($event)" multiple>
+
+                    <button type="submit" class="btn btn-success subBtn">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Show Images Modal -->
+<div class="modal fade" id="showImages" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="showImagesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="close-btn">
+          <h4>Product Images</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="m-body">
+          <div class="carousel">
+            <button class="carousel-control prev" (click)="prevSlide()">&#10094;</button>
+            <div class="carousel-inner">
+              <div *ngFor="let image of selectedProductImages; let i = index" [class.active]="i === currentSlide" class="carousel-item">
+                <img [src]="image" alt="Product Image" width="100%">
+              </div>
+            </div>
+            <button class="carousel-control next" (click)="nextSlide()">&#10095;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
